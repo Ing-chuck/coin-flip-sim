@@ -13,8 +13,8 @@ public class CalculateScript : MonoBehaviour {
     public static int coinSide = 0;
     public static int maxCoins;
     public static float thickness;
+    public static float totalSimTime = 0;
 
-    static float totalSimTime = 0;
     static float simTime = 0;
     static bool timerStarted = false;
     float t1, t2;
@@ -40,7 +40,8 @@ public class CalculateScript : MonoBehaviour {
             simTime = t2 - t1;
             totalSimTime += simTime;
 
-            sim.simFinished=true;
+            sim.simFinished = true;
+            timerStarted = false;
             resultText.text += "Tails: " + coinTop + " Heads: " + coinBottom + " Side: " + coinSide + "\n\rStatus: COMPLETED";
         }
         else

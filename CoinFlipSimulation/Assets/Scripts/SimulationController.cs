@@ -16,6 +16,8 @@ public class SimulationController : MonoBehaviour {
     public Slider intervalSlider;
     private int intervalSteps;
     public Text intervalText;
+    public Slider accelerationSlider;
+    public Text accelerationText;
     public Text sampleSizeText;
     public GameObject graph;
     public GameObject linePrefab;
@@ -95,6 +97,9 @@ public class SimulationController : MonoBehaviour {
         simFinished = true;
         if (!isBenchmarkRunning && !isSearchRunning)
         {
+            CalculateScript.totalSimTime = 0;
+            Time.timeScale = 1.0f;
+            accelerationSlider.value = 1;
             graph.SetActive(false);
             StopAllCoroutines();
         }
@@ -109,6 +114,12 @@ public class SimulationController : MonoBehaviour {
     {
         intervalSteps = (int)value;
         intervalText.text = "Split simulation interval to " + intervalSteps + " pieces";
+    }
+
+    public void OnAccelerationSliderValueChanged(float value)
+    {
+        accelerationText.text = "Simulation Speed: " + value + "x";
+        Time.timeScale = value;
     }
 
     public void StartBenchmark()
@@ -163,22 +174,16 @@ public class SimulationController : MonoBehaviour {
 
     public void OnSearchStartValueEnter(string value)
     {
-        GameObject inField = GameObject.Find("SearchStart");
-        value = inField.GetComponent<InputField>().text;
         searchStart = float.Parse(value);
     }
 
     public void OnSearchEndValueEnter(string value)
     {
-        GameObject inField = GameObject.Find("SearchEnd");
-        value = inField.GetComponent<InputField>().text;
         searchEnd = float.Parse(value);
     }
 
     public void OnSearchStepValueEnter(string value)
     {
-        GameObject inField = GameObject.Find("SearchStep");
-        value = inField.GetComponent<InputField>().text;
         searchStep = float.Parse(value);
     }
 

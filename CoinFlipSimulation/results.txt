@@ -1,0 +1,5 @@
+Sample size
+2500
+Landed on side:
+189
+639
