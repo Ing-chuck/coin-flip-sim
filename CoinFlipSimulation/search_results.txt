@@ -1,0 +1,4 @@
+Sample size: 2500, Coin diameter: 20
+Thickness, heads, tails, sides, z value
+7.071068, 1071, 1077, 352, 20.42124
+......Simulation Terminated by user......
